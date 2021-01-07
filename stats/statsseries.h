@@ -6,9 +6,7 @@
 
 #include <QScatterSeries>
 
-namespace QtCharts {
-	class QChart;
-}
+class QGraphicsScene;
 class StatsAxis;
 
 // We derive from a proper scatter series to get access to the map-to
@@ -17,13 +15,13 @@ class StatsAxis;
 
 class StatsSeries : public QtCharts::QScatterSeries {
 public:
-	StatsSeries(QtCharts::QChart *chart, StatsAxis *xAxis, StatsAxis *yAxis);
+	StatsSeries(QGraphicsScene *scene, StatsAxis *xAxis, StatsAxis *yAxis);
 	virtual ~StatsSeries();
 	virtual void updatePositions() = 0;	// Called if chart geometry changes.
 	virtual bool hover(QPointF pos) = 0;	// Called on mouse movement. Return true if an item of this series is highlighted.
 	virtual void unhighlight() = 0;		// Unhighlight any highlighted item.
 protected:
-	QtCharts::QChart *chart;
+	QGraphicsScene *scene;
 	StatsAxis *xAxis, *yAxis;		// May be zero for charts without axes (pie charts).
 	QPointF toScreen(QPointF p);
 };

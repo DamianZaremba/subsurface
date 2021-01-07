@@ -70,6 +70,7 @@ QSize ChartItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
 	return size;
 }
 
+static const QUrl urlStatsView = QUrl(QStringLiteral("qrc:/qml/statsview2.qml"));
 StatsWidget::StatsWidget(QWidget *parent) : QWidget(parent)
 {
 	ui.setupUi(this);
@@ -83,6 +84,13 @@ StatsWidget::StatsWidget(QWidget *parent) : QWidget(parent)
 	connect(ui.var1Binner, QOverload<int>::of(&QComboBox::activated), this, &StatsWidget::var1BinnerChanged);
 	connect(ui.var2Binner, QOverload<int>::of(&QComboBox::activated), this, &StatsWidget::var2BinnerChanged);
 	connect(ui.var2Operation, QOverload<int>::of(&QComboBox::activated), this, &StatsWidget::var2OperationChanged);
+
+	ui.stats->setSource(urlStatsView);
+	ui.stats->setResizeMode(QQuickWidget::SizeRootObjectToView);
+	QQuickItem *root = ui.stats->rootObject();
+	view = qobject_cast<StatsView *>(root);
+	if (!view)
+		qWarning("Oops. The root of the StatsView is not a StatsView.");
 }
 
 // Initialize QComboBox with list of variables
@@ -129,7 +137,8 @@ void StatsWidget::updateUi()
 		ui.features->addWidget(check);
 	}
 
-	ui.stats->plot(state);
+	if (view)
+		view->plot(state);
 }
 
 void StatsWidget::closeStats()
