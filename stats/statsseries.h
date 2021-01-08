@@ -4,16 +4,12 @@
 #ifndef STATS_SERIES_H
 #define STATS_SERIES_H
 
-#include <QScatterSeries>
+#include <QPointF>
 
 class QGraphicsScene;
 class StatsAxis;
 
-// We derive from a proper scatter series to get access to the map-to
-// and map-from coordinates calls. But we don't use any of its functionality.
-// This should be removed in due course.
-
-class StatsSeries : public QtCharts::QScatterSeries {
+class StatsSeries {
 public:
 	StatsSeries(QGraphicsScene *scene, StatsAxis *xAxis, StatsAxis *yAxis);
 	virtual ~StatsSeries();

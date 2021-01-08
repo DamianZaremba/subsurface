@@ -13,6 +13,7 @@ class InformationBox;
 class QGraphicsEllipseItem;
 class QGraphicsScene;
 class QGraphicsSimpleTextItem;
+class QRectF;
 
 class PieSeries : public StatsSeries {
 public:
