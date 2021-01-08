@@ -13,7 +13,8 @@ Kirigami.Page {
 	topPadding: 0
 	rightPadding: 0
 	bottomPadding: 0
-	width: rootItem.colWidth
+	width: rootItem.width
+	implicitWidth: rootItem.width
 	StatsManager {
 		id: statsManager
 	}
