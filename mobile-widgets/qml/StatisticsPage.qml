@@ -45,6 +45,7 @@ Kirigami.Page {
 			TemplateComboBox  {
 				id: var1
 				model: statsManager.var1List
+				currentIndex: statsManager.var1Index;
 				Layout.fillWidth: false
 				onCurrentIndexChanged: {
 					statsManager.var1Changed(currentIndex)
@@ -62,6 +63,7 @@ Kirigami.Page {
 			TemplateComboBox {
 				id: var1Binner
 				model: statsManager.binner1List
+				currentIndex: statsManager.binner1Index;
 				Layout.fillWidth: false
 				onCurrentIndexChanged: {
 					statsManager.var1BinnerChanged(currentIndex)
@@ -79,6 +81,7 @@ Kirigami.Page {
 			TemplateComboBox {
 				id: var2
 				model: statsManager.var2List
+				currentIndex: statsManager.var2Index;
 				Layout.fillWidth: false
 				onCurrentIndexChanged: {
 					statsManager.var2Changed(currentIndex)
@@ -96,6 +99,7 @@ Kirigami.Page {
 			TemplateComboBox {
 				id: var2Binner
 				model: statsManager.binner2List
+				currentIndex: statsManager.binner2Index;
 				Layout.fillWidth: false
 				onCurrentIndexChanged: {
 					statsManager.var2BinnerChanged(currentIndex)
