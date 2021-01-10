@@ -108,6 +108,20 @@ Kirigami.ApplicationWindow {
 		manager.appendTextToLog("switched to page " + page.title)
 	}
 
+	function resetDiveDetails() {
+		// do we have a DiveDetails page displayed?
+		var i = pageIndex(detailsWindow)
+		if (i === -1) {
+			// there was no DiveDetails page, so stop
+			return
+		}
+		// move that page to be the last page and relace it (because replace removes all higher pages)
+		pageStack.movePage(i, pageStack.contentItem.contentChildren.length - 1)
+		pageStack.replace(detailsWindow)
+		// and now move the page back
+		pageStack.movePage(pageStack.contentItem.contentChildren.length - 1, i)
+	}
+
 	function showMap() {
 		showPage(mapPage)
 	}
